@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программный комплекс поддержки принятия решений</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon">МАИ</div>
+                <div class="logo-text">Многокритериальный<br>анализ</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn active" onclick="showTab('tab-instruction', this)">
+                    <span class="icon">📖</span> Инструкция
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-data', this)">
+                    <span class="icon">📊</span> Исходные данные
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-criteria', this)">
+                    <span class="icon">⚖️</span> Парные сравнения
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-results', this)">
+                    <span class="icon">📈</span> Результаты
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-about', this)">
+                    <span class="icon">⚙️</span> О программе
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="icon">🛡️</span> Удобный инструмент<br>для принятия решений
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+        <section id="tab-instruction" class="tab-content active">
+                <h1>Инструкция по работе</h1>
+                <p class="subtitle">Программный комплекс поддержки принятия решений по восстановлению устройств контроля участков пути</p>
+                
+                <div class="info-box">
+                    <span class="icon">ℹ️</span> 
+                    Данная программа позволяет выбрать оптимальный способ восстановления контроля участка пути в условиях ЧС на основе метода анализа иерархий (МАИ).
+                </div>
+
+                <div class="card">
+                    <h2>Шаг 1. Как выставлять баллы (от 1 до 3) в «Исходных данных»</h2>
+                    <p>Для объективной оценки устройств используется строгая логика морфологического анализа. Оценка <strong>1</strong> означает наиболее неблагоприятный фактор, <strong>3</strong> — наиболее благоприятный для условий ЧС.</p>
+                    
+                    <table class="instruction-table">
+                        <thead>
+                            <tr>
+                                <th>Критерий</th>
+                                <th>Оценка 1 (Плохо)</th>
+                                <th>Оценка 2 (Средне)</th>
+                                <th>Оценка 3 (Хорошо)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>X (Трудоемкость)</strong></td>
+                                <td>Поиск причин отказов, полная замена оборудования</td>
+                                <td>Восстановление отдельных частей устройств</td>
+                                <td>Минимальные трудозатраты (быстрый монтаж и ввод в эксплуатацию)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P (Стоимость)</strong></td>
+                                <td>Наличие дорогостоящего оборудования</td>
+                                <td>Средняя стоимость оборудования и работ</td>
+                                <td>Относительно низкая стоимость</td>
+                            </tr>
+                            <tr>
+                                <td><strong>K (Доступность)</strong></td>
+                                <td>Отсутствие резервных устройств или их составных частей</td>
+                                <td>Дефицит резервных устройств или их составных частей</td>
+                                <td>Наличие резервных устройств или их составных частей</td>
+                            </tr>
+                            <tr>
+                                <td><strong>S (Квалификация)</strong></td>
+                                <td>Требуются специалисты высокой квалификации</td>
+                                <td>Квалифицированные специалисты</td>
+                                <td>Допускаются специалисты низкой квалификации</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="info-box" style="margin-top: 15px; background: #fffbeb; border-color: #fcd34d; color: #92400e;">
+                        <span class="icon">💡</span> 
+                        <strong>Примечание:</strong> Данные значения являются примером. Вы можете адаптировать шкалу оценок под свои конкретные условия и задачи, сохраняя логику: 1 — худший показатель, 3 — лучший.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Шаг 2. Как сравнивать критерии (Шкала Саати)</h2>
+                    <p>На вкладке <strong>«Парные сравнения»</strong> нужно решить, что важнее в данной конкретной обстановке. Используйте выпадающие списки. Программа автоматически переведет ваш выбор в математические веса:</p>
+                    <ul>
+                        <li><strong>Равная важность</strong> — критерии одинаково важны.</li>
+                        <li><strong>Умеренно важнее</strong> — небольшое превосходство (в 3 раза).</li>
+                        <li><strong>Сильно важнее</strong> — существенное превосходство (в 5 раз).</li>
+                        <li><strong>Абсолютно важнее</strong> — максимальное превосходство (в 9 раз).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="tab-data" class="tab-content">
+                <h1>Исходные данные</h1>
+                <p class="subtitle">Введите значения баллов (от 1 до 3) для каждого устройства по критериям</p>
+                
+                <div class="info-box">
+                    <span class="icon">⚠️</span> 
+                    Внимание! Все поля обязательны для заполнения. Значения должны быть целыми числами от 1 до 3.
+                </div>
+
+                <div class="card table-card">
+                    <table id="alternativesTable">
+                        <thead>
+                            <tr>
+                                <th>Устройство</th>
+                                <th title="Трудоемкость">X</th>
+                                <th title="Стоимость">P</th>
+                                <th title="Доступность">K</th>
+                                <th title="Квалификация">S</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Рельсовые цепи (РЦ)</td><td><input type="number" id="rc_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="rc_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="rc_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="rc_s" min="1" max="3" placeholder="1-3"></td></tr>
+                            <tr><td>Электронная система счета осей (ЭССО)</td><td><input type="number" id="esso_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="esso_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="esso_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="esso_s" min="1" max="3" placeholder="1-3"></td></tr>
+                            <tr><td>Балиса</td><td><input type="number" id="balisa_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="balisa_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="balisa_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="balisa_s" min="1" max="3" placeholder="1-3"></td></tr>
+                            <tr><td>Волоконно-оптический датчик (ВОД)</td><td><input type="number" id="vod_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="vod_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="vod_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="vod_s" min="1" max="3" placeholder="1-3"></td></tr>
+                            <tr><td>Индуктивно-проводной датчик (ИПД)</td><td><input type="number" id="ipd_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="ipd_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="ipd_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="ipd_s" min="1" max="3" placeholder="1-3"></td></tr>
+                            <tr><td>Датчик на основе ПАВ</td><td><input type="number" id="pav_x" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="pav_p" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="pav_k" min="1" max="3" placeholder="1-3"></td><td><input type="number" id="pav_s" min="1" max="3" placeholder="1-3"></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="button-row">
+                        <button class="secondary-btn" onclick="clearData()">Очистить форму</button>
+                        <button class="primary-btn" onclick="showTab('tab-criteria', document.querySelectorAll('.nav-btn')[2])">Далее ➔</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-criteria" class="tab-content">
+                <h1>Парные сравнения критериев</h1>
+                <p class="subtitle">Оцените, насколько один критерий важнее другого в текущей обстановке</p>
+
+                <div class="card">
+                    <div class="form-grid select-grid">
+                        <label>Критерий X (Трудоемкость) к P (Стоимость):
+                            <select id="comp_xp" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+                        
+                        <label>Критерий X (Трудоемкость) к K (Доступность):
+                            <select id="comp_xk" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+
+                        <label>Критерий X (Трудоемкость) к S (Квалификация):
+                            <select id="comp_xs" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+
+                        <label>Критерий P (Стоимость) к K (Доступность):
+                            <select id="comp_pk" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+
+                        <label>Критерий P (Стоимость) к S (Квалификация):
+                            <select id="comp_ps" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+
+                        <label>Критерий K (Доступность) к S (Квалификация):
+                            <select id="comp_ks" class="sati-select">
+                                <option value="9">Абсолютно важнее (9)</option>
+                                <option value="7">Очень сильно важнее (7)</option>
+                                <option value="5">Сильно важнее (5)</option>
+                                <option value="3">Умеренно важнее (3)</option>
+                                <option value="1" selected>Равная важность (1)</option>
+                                <option value="0.333">Умеренно менее важен (1/3)</option>
+                                <option value="0.2">Сильно менее важен (1/5)</option>
+                                <option value="0.143">Очень сильно менее важен (1/7)</option>
+                                <option value="0.111">Абсолютно менее важен (1/9)</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="button-row" style="margin-top: 20px;">
+                        <button class="primary-btn" onclick="calculateAll()">Рассчитать результаты</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-results" class="tab-content">
+                <h1>Результаты расчета</h1>
+                <p class="subtitle">Глобальные приоритеты и выбор оптимального устройства</p>
+
+                <div class="results-grid">
+                    <div class="card">
+                        <h2>Рейтинг устройств</h2>
+                        <div id="osCheck" class="os-box"></div>
+                        <ul id="globalPrioritiesList" class="priority-list"></ul>
+                        <h3 id="winnerText" class="winner-text"></h3>
+                    </div>
+                    
+                    <div class="card">
+                        <h2>Диаграмма приоритетов</h2>
+                        <div class="chart-container">
+                            <canvas id="resultsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="tab-about" class="tab-content">
+                <h1>О программе</h1>
+                <div class="card">
+                    <p><strong>Наименование:</strong> Программный комплекс поддержки принятия решений по восстановлению устройств контроля участков пути методом анализа иерархий.</p>
+                    <p><strong>Автор:</strong> Хуурак Начын Рамильович</p>
+                    <p><strong>Год:</strong> 2026</p>
+                    <p>Программа разработана в рамках военно-научной работы (шифр «Датчик-27»).</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+       <script src="script.js"></script>
+</body>
+</html>

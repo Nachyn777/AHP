@@ -1,0 +1,203 @@
+:root {
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #94a3b8;
+    --sidebar-active: #3b82f6;
+    --main-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary-blue: #2563eb;
+    --border-color: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- БОКОВОЕ МЕНЮ --- */
+.app-layout { display: flex; width: 100%; height: 100%; }
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.logo-icon {
+    background: var(--primary-blue);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.logo-text { font-size: 0.9rem; line-height: 1.2; font-weight: 600; }
+
+.nav-menu { padding: 20px 10px; display: flex; flex-direction: column; gap: 5px; }
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--sidebar-text);
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-btn.active { background: var(--primary-blue); color: white; }
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: var(--sidebar-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
+.main-content {
+    flex-grow: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+}
+.tab-content { display: none; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 1.8rem; margin-bottom: 5px; color: #0f172a; }
+.subtitle { color: var(--text-muted); margin-bottom: 25px; font-size: 1rem; }
+
+/* Карточки и инфо-боксы */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.info-box {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e3a8a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Таблицы */
+.table-card { padding: 0; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th { background: #f1f5f9; padding: 15px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-color); }
+th:first-child { text-align: left; padding-left: 20px; }
+td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); text-align: center; }
+td:first-child { text-align: left; padding-left: 20px; font-weight: 500; }
+tr:hover { background: #f8fafc; }
+
+input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
+}
+input[type="number"]:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
+
+/* Форма критериев */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-grid label { display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+.form-grid input { width: 100px; }
+
+/* Кнопки */
+.primary-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.primary-btn:hover { background: #1d4ed8; }
+
+.secondary-btn {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.secondary-btn:hover { background: #e2e8f0; }
+
+.button-row { padding: 20px; display: flex; justify-content: flex-end; gap: 10px; background: #f8fafc; }
+
+/* Результаты */
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.os-box { padding: 15px; border-radius: 8px; margin-bottom: 15px; font-weight: 600; text-align: center; }
+.os-good { background: #dcfce7; color: #166534; }
+.os-bad { background: #fee2e2; color: #991b1b; }
+.priority-list { list-style: none; margin-bottom: 20px; }
+.priority-list li { padding: 12px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 1.05rem; }
+.priority-list li:last-child { border-bottom: none; }
+.winner-text { text-align: center; color: #166534; font-size: 1.3rem; background: #dcfce7; padding: 15px; border-radius: 8px; }
+.chart-container { position: relative; height: 300px; width: 100%; }
+
+/* Инструкция */
+.instruction-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+.instruction-table th { background: #e2e8f0; padding: 10px; text-align: left; color: #1e293b; }
+.instruction-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+.instruction-table td:first-child { width: 25%; color: #2563eb; }
+.instruction-table td:nth-child(2) { color: #991b1b; }
+.instruction-table td:nth-child(3) { color: #b45309; }
+.instruction-table td:nth-child(4) { color: #166534; }
+/* Стили для выпадающих списков Саати */
+.select-grid {
+    grid-template-columns: 1fr; /* В один столбец, так как текста стало много */
+}
+.sati-select {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    color: #1e293b;
+}
+.sati-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
